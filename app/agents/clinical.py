@@ -4,9 +4,9 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from app.tools.web_search import web_search
 
-State = Dict[str, Any]
-emb_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-vect_store = Chroma(
+State = Dict[str, Any] #for storing the state of each act
+emb_model = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2") 
+vect_store = Chroma(     #retriving saved chromabd
     embedding_function=emb_model,
     persist_directory="chroma_db_v2/clinical-nephrology_db"
 )
@@ -18,7 +18,7 @@ def book_context(docs: List[Any],patient_record: Optional[Dict[str, Any]]=None) 
     """
     lines = []
     
-    if patient_record:
+    if patient_record: #appending patient summary to lines
         pr = patient_record
         lines.append("=== Patient Discharge Summary ===")
         lines.append(f"Primary diagnosis: {pr.get('primary_diagnosis')}")
@@ -29,7 +29,7 @@ def book_context(docs: List[Any],patient_record: Optional[Dict[str, Any]]=None) 
         lines.append(f"Warning signs: {pr.get('warning_signs')}")
         lines.append("")
     
-    for idx, doc in enumerate(docs, start=1):
+    for idx, doc in enumerate(docs, start=1): #appending meta data to lines
         meta = doc.metadata or {}
         page = meta.get("page")
         chunk_idx = meta.get("chunk_index")
@@ -38,21 +38,21 @@ def book_context(docs: List[Any],patient_record: Optional[Dict[str, Any]]=None) 
         lines.append(doc.page_content)
         lines.append("")
 
-    return "\n".join(lines)
+    return "\n".join(lines) #return string
   
 
 def web_context(results: List[Dict[str, Any]]) -> str:
     """ returns the context string from web search results.
     """
     lines = []
-    for idx, r in enumerate(results, start=1):
+    for idx, r in enumerate(results, start=1): #appending data retrived from the web
         lines.append(
           f"[Web {idx}] {r.get('title')}\n"
           f"URL: {r.get('url')}\n"
           f"Snippet: {r.get('snippet')}\n"
         )
     
-    return "\n\n".join(lines)
+    return "\n\n".join(lines) #returning the data
   
   
 def wants_latest_or_web(question: str) -> bool:
@@ -71,20 +71,20 @@ def wants_latest_or_web(question: str) -> bool:
         "web search",
         "check online",
     ]
-    return any(k in text for k in keywords)
+    return any(k in text for k in keywords) #checking if the question contains above keywords are not
   
 def clinical_agent(message: str,state: State, allow_web: bool = True) -> Tuple[str, State]:
       """ clinical agent to handle human queries related to diagnosis, searches web if they want to know latest info and suggest them to go to doctor. if they have any serious issues.
       """
-      patient_record = state.get("patient_record")
-      ask_for_web = wants_latest_or_web(message)
+      patient_record = state.get("patient_record") #getting patient records from state
+      ask_for_web = wants_latest_or_web(message) #asking web for context
       
-      docs = vect_store.similarity_search(message, k=6)
+      docs = vect_store.similarity_search(message, k=6)#doing similarity search in vector db with respect to the given query and retriving the similar ones
       
       if docs and not (ask_for_web and allow_web):
-          context = book_context(docs, patient_record)
+          context = book_context(docs, patient_record)#giving similar context to function and returning string
           
-          system_prompt = (
+          system_prompt = ( # system prompt
             "You are a clinical nephrology assistant answering questions for a recently discharged patient.\n"
             "- Use only the context from the nephrology reference and discharge summary below.\n"
             "- Refer to the snippets using the [Source N] labels when needed.\n"
@@ -93,13 +93,13 @@ def clinical_agent(message: str,state: State, allow_web: bool = True) -> Tuple[s
             "- End with a short line reminding the user that this does not replace their doctor's advice.\n"
           )
           
-          user_prompt = (
+          user_prompt = (#user prompt
             f"Patient question:\n{message}\n\n"
             f"---\n"
             f"Context:\n{context}\n"
           )
           
-          answer = call_groq_chat(
+          answer = call_groq_chat( #calling groq client
               system_prompt=system_prompt,  
               user_prompt=user_prompt,
               model="openai/gpt-oss-20b",
@@ -109,13 +109,13 @@ def clinical_agent(message: str,state: State, allow_web: bool = True) -> Tuple[s
           
           return answer, state
       
-      if allow_web:
+      if allow_web: #checking if searching in web allowed or not
           web_results = web_search(message, num_results=3)
           
           bc = book_context(docs, patient_record) if docs else ""
           wc = web_context(web_results) if web_results else ""
           
-          if not book_context and not web_context:
+          if not book_context and not web_context: #writing fallback if the web is not allowed and information doesnt present in chromadb
               fallback = (
                 "I could not find enough reliable information in the textbook or via web search "
                 "to answer this question. Please discuss this directly with your doctor."
@@ -154,15 +154,15 @@ def clinical_agent(message: str,state: State, allow_web: bool = True) -> Tuple[s
       )
       return fallback, state
 
-if __name__ == "__main__":
-    state: State = {}
-    print("Clinical agent test (RAG + optional web). Type 'exit' to quit.\n")
+# if __name__ == "__main__": #for testing wether the clinical agent is working or not
+#     state: State = {}
+#     print("Clinical agent test (RAG + optional web). Type 'exit' to quit.\n")
 
-    while True:
-        q = input("You: ")
-        if q.lower() in {"exit", "quit"}:
-            break
+#     while True:
+#         q = input("You: ")
+#         if q.lower() in {"exit", "quit"}:
+#             break
 
-        reply, state = clinical_agent(q, state, allow_web=True)
-        print(f"Clinical: {reply}")
-        print("---")
+#         reply, state = clinical_agent(q, state, allow_web=True)
+#         print(f"Clinical: {reply}")
+#         print("---")
