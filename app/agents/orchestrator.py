@@ -5,9 +5,9 @@ from app.agents.receptionist import receptionist_agent
 from app.agents.clinical import clinical_agent
 from app.logging_setup import logger
 
-State = Dict[str, Any]
+State = Dict[str, Any] # initializing the state
 
-ADMIN_KEYWORDS = [
+ADMIN_KEYWORDS = [ # storing some keywords related to admin
     "appointment",
     "book an appointment",
     "book appointment",
@@ -22,21 +22,17 @@ ADMIN_KEYWORDS = [
     "time slot",
 ]
 
-def _quick_admin_check(message: str) -> bool:
+def _quick_admin_check(message: str) -> bool: # checking if the message is for receptionist or clinical
     text = message.lower()
     return any(k in text for k in ADMIN_KEYWORDS)
 
 
 
-def _format_history_for_classifier(history: List[Dict[str, Any]]) -> str:
+def _format_history_for_classifier(history: List[Dict[str, Any]]) -> str: 
     """
-    Take a short history list and format it into a compact text block
-    for the classifier prompt.
-
-    Each item in history is expected to look like:
-      {"role": "user"/"assistant", "agent": "receptionist"/"clinical"/None, "content": str}
+    Take a short history list and format it into a compact text block this functions returns a string 
     """
-    lines = []
+    lines = [] 
     # only last 6 turns to keep context short
     for h in history[-6:]:
         role = h.get("role", "")
@@ -55,21 +51,14 @@ def _format_history_for_classifier(history: List[Dict[str, Any]]) -> str:
 def _classify_intent(message: str, state: State) -> str:
     """
     Use a small LLM call to classify the user message.
-
-    Labels:
-      - IDENTITY  : user is telling or clarifying their name/who they are.
-      - ADMIN     : appointments, scheduling, transport, documents, contact info.
-      - CLINICAL  : symptoms, diagnosis, meds, side effects, diet for disease, labs, prognosis, etc.
-      - SMALL_TALK: greetings, acknowledgements (yes/ok/thanks), generic chit-chat.
-
-    Now uses short conversation history from state to understand context better.
+    and uses short conversation history from state to understand context better.
     """
     patient_record = state.get("patient_record")
-    history = state.get("history", [])
+    history = state.get("history", []) # getting chat history
 
-    history_text = _format_history_for_classifier(history)
-
-    system_prompt = (
+    history_text = _format_history_for_classifier(history) #formatting the history
+ 
+    system_prompt = ( 
         "You are a router for a hospital chatbot.\n"
         "Your task is to classify the NEXT user message into exactly ONE label:\n"
         "- IDENTITY  : They are telling or clarifying their name or identity.\n"
@@ -89,8 +78,8 @@ def _classify_intent(message: str, state: State) -> str:
     )
 
     context_line = ""
-    if patient_record:
-        context_line = (
+    if patient_record: #if details about patient is present
+        context_line = ( # fill the context
             f"Known patient diagnosis: {patient_record.get('primary_diagnosis')}, "
             f"discharge date: {patient_record.get('discharge_date')}"
         )
@@ -110,7 +99,7 @@ def _classify_intent(message: str, state: State) -> str:
         max_tokens=5,
     ).strip().upper()
 
-    if label not in {"IDENTITY", "ADMIN", "CLINICAL", "SMALL_TALK"}:
+    if label not in {"IDENTITY", "ADMIN", "CLINICAL", "SMALL_TALK"}: #fallback if the llm is not working
         # Fallback: if we know the patient already, default to CLINICAL; otherwise IDENTITY
         if state.get("patient_record"):
             return "CLINICAL"
@@ -119,11 +108,11 @@ def _classify_intent(message: str, state: State) -> str:
     return label
 
 
-def handle_message(message: str, state: State) -> Tuple[str, State]:
+def handle_message(message: str, state: State) -> Tuple[str, State]: # handling messages like when to call clinical and receptionist bot
     allow_web = state.get("allow_web", True)
     patient_record = state.get("patient_record")
 
-    history: List[Dict[str, Any]] = state.get("history", [])
+    history: List[Dict[str, Any]] = state.get("history", []) #getting history
     state["history"] = history
     history.append({"role": "user", "agent": None, "content": message})
     session_id = state.get("session_id", "unknown") 
@@ -158,7 +147,7 @@ def handle_message(message: str, state: State) -> Tuple[str, State]:
 
     # 3) Otherwise, use LLM classifier with history
     intent = _classify_intent(message, state)
-    logger.info(
+    logger.info( #logging information
         "ROUTER session_id=%s intent=%s allow_web=%s message=%s",
         session_id,
         intent,
@@ -179,7 +168,7 @@ def handle_message(message: str, state: State) -> Tuple[str, State]:
 
     # 4) SMALL_TALK + CLINICAL → clinical
     reply, state = clinical_agent(message, state, allow_web=allow_web)
-    state["mode"] = "clinical"
+    state["mode"] = "clinical" # toggling between clinical and receptionist mode
     state["history"].append(
         {"role": "assistant", "agent": "clinical", "content": reply}
     )
