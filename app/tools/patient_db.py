@@ -15,13 +15,13 @@ def load_patients() -> List[Dict[str, Any]]:
     if patients:  # already loaded
         return patients
 
-    fp = "data/patients.json"
+    fp = "data/patients.json" # retriving the file
 
     if not os.path.exists(fp):
-        raise FileNotFoundError("Patient data file not found.")
+        raise FileNotFoundError("Patient data file not found.") #throwing error if the file is not foundes
 
     with open(fp, "r", encoding="utf-8") as f:
-        patients = json.load(f)
+        patients = json.load(f)# loading json file into list
 
     return patients
 
