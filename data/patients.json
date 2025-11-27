@@ -1,0 +1,252 @@
+[
+  {
+    "patient_name": "Abhiram",
+    "discharge_date": "2025-01-15",
+    "primary_diagnosis": "Chronic Kidney Disease Stage 3",
+    "medications": ["Lisinopril 10mg daily", "Furosemide 20mg twice daily"],
+    "dietary_restrictions": "Low sodium (2g/day), fluid restriction (1.5L/day)",
+    "follow_up": "Nephrology clinic in 2 weeks",
+    "warning_signs": "Swelling, decreased urine output, shortness of breath",
+    "discharge_instructions": "Monitor blood pressure daily"
+  },
+  {
+    "patient_name": "John Smith",
+    "discharge_date": "2025-02-03",
+    "primary_diagnosis": "Acute Kidney Injury",
+    "medications": ["Nifedipine 30mg daily"],
+    "dietary_restrictions": "Low potassium diet",
+    "follow_up": "Serum creatinine recheck in 1 week",
+    "warning_signs": "Confusion, chest pain, reduced urine output",
+    "discharge_instructions": "Avoid NSAIDs, maintain hydration"
+  },
+  {
+    "patient_name": "Priya Raj",
+    "discharge_date": "2024-12-18",
+    "primary_diagnosis": "Nephrotic Syndrome",
+    "medications": ["Prednisone 20mg daily", "Atorvastatin 10mg daily"],
+    "dietary_restrictions": "Low salt, moderate protein intake",
+    "follow_up": "Urine protein monitoring twice a week",
+    "warning_signs": "Facial swelling, frothy urine",
+    "discharge_instructions": "Watch for infection or rapid swelling"
+  },
+  {
+    "patient_name": "Michael Johnson",
+    "discharge_date": "2025-02-10",
+    "primary_diagnosis": "End-stage Renal Disease",
+    "medications": ["Erythropoietin injections weekly"],
+    "dietary_restrictions": "Renal-specific diet",
+    "follow_up": "Dialysis schedule to continue 3 times weekly",
+    "warning_signs": "Weight gain, low urine, extreme fatigue",
+    "discharge_instructions": "Attend dialysis on schedule"
+  },
+  {
+    "patient_name": "Sara Ali",
+    "discharge_date": "2025-01-28",
+    "primary_diagnosis": "Kidney Stone",
+    "medications": ["Tamsulosin 0.4mg daily"],
+    "dietary_restrictions": "Increase hydration, avoid oxalate-rich foods",
+    "follow_up": "Ultrasound in 3 weeks",
+    "warning_signs": "Severe flank pain, fever, inability to urinate",
+    "discharge_instructions": "Drink at least 2-3 liters daily"
+  },
+  {
+    "patient_name": "David Lee",
+    "discharge_date": "2024-11-12",
+    "primary_diagnosis": "CKD Stage 4",
+    "medications": ["Calcitriol 0.25mcg daily", "Sevelamer 800mg with meals"],
+    "dietary_restrictions": "Low phosphate, controlled protein",
+    "follow_up": "GFR monitoring monthly",
+    "warning_signs": "Bone pain, itching, extreme fatigue",
+    "discharge_instructions": "Adhere closely to renal diet"
+  },
+  {
+    "patient_name": "Emily Carter",
+    "discharge_date": "2025-01-06",
+    "primary_diagnosis": "Urinary Tract Infection-Induced AKI",
+    "medications": ["Ciprofloxacin 500mg twice daily"],
+    "dietary_restrictions": "No specific restrictions",
+    "follow_up": "Repeat urine culture in 10 days",
+    "warning_signs": "Burning urination, fever",
+    "discharge_instructions": "Complete full antibiotic course"
+  },
+  {
+    "patient_name": "Ravi Kumar",
+    "discharge_date": "2024-12-30",
+    "primary_diagnosis": "Hypertensive Nephropathy",
+    "medications": ["Amlodipine 5mg daily", "Losartan 50mg daily"],
+    "dietary_restrictions": "Low salt diet",
+    "follow_up": "BP log review in 2 weeks",
+    "warning_signs": "Headache, visual disturbances",
+    "discharge_instructions": "Record BP twice daily"
+  },
+  {
+    "patient_name": "Olivia Brown",
+    "discharge_date": "2025-01-22",
+    "primary_diagnosis": "Polycystic Kidney Disease",
+    "medications": ["Tolvaptan 15mg twice daily"],
+    "dietary_restrictions": "Avoid dehydration",
+    "follow_up": "Hepatic panel every 2 weeks",
+    "warning_signs": "Side pain, nausea",
+    "discharge_instructions": "Drink water regularly"
+  },
+  {
+    "patient_name": "Arjun Mehta",
+    "discharge_date": "2025-02-02",
+    "primary_diagnosis": "Diabetic Nephropathy",
+    "medications": ["Metformin 500mg twice daily", "Ramipril 5mg daily"],
+    "dietary_restrictions": "Low carbohydrate diet",
+    "follow_up": "HbA1C test in 6 weeks",
+    "warning_signs": "High blood glucose, numbness",
+    "discharge_instructions": "Monitor blood glucose daily"
+  },
+  {
+    "patient_name": "Sophia Wilson",
+    "discharge_date": "2024-10-10",
+    "primary_diagnosis": "Glomerulonephritis",
+    "medications": ["Prednisolone 30mg daily"],
+    "dietary_restrictions": "Low salt",
+    "follow_up": "Kidney biopsy follow-up in 4 weeks",
+    "warning_signs": "Blood in urine, swelling",
+    "discharge_instructions": "Call doctor if blood in urine returns"
+  },
+  {
+    "patient_name": "Henry Clark",
+    "discharge_date": "2024-12-14",
+    "primary_diagnosis": "Nephritic Syndrome",
+    "medications": ["ACE inhibitor"],
+    "dietary_restrictions": "Low sodium",
+    "follow_up": "BP follow-up",
+    "warning_signs": "High BP, swelling",
+    "discharge_instructions": "Monitor BP"
+  },
+  {
+    "patient_name": "Aisha Khan",
+    "discharge_date": "2025-01-09",
+    "primary_diagnosis": "Post-transplant kidney care",
+    "medications": ["Tacrolimus 2mg daily"],
+    "dietary_restrictions": "Avoid grapefruit",
+    "follow_up": "Drug level testing weekly",
+    "warning_signs": "Fever, new swelling, pain near graft",
+    "discharge_instructions": "Take immunosuppressants strictly"
+  },
+  {
+    "patient_name": "Carlos Martinez",
+    "discharge_date": "2025-02-01",
+    "primary_diagnosis": "Hyperkalemia",
+    "medications": ["Sodium zirconium cyclosilicate"],
+    "dietary_restrictions": "Avoid high-potassium foods",
+    "follow_up": "Serum potassium monitoring in 1 week",
+    "warning_signs": "Muscle weakness, arrhythmia",
+    "discharge_instructions": "Avoid bananas, tomatoes, oranges"
+  },
+  {
+    "patient_name": "Maya Patel",
+    "discharge_date": "2024-09-22",
+    "primary_diagnosis": "Pregnancy-related renal changes",
+    "medications": ["Iron supplement"],
+    "dietary_restrictions": "Increase hydration",
+    "follow_up": "Obstetric-renal review in 3 weeks",
+    "warning_signs": "Severe swelling, headache",
+    "discharge_instructions": "Track daily weight"
+  },
+  {
+    "patient_name": "Liam Wright",
+    "discharge_date": "2024-11-25",
+    "primary_diagnosis": "Renal artery stenosis",
+    "medications": ["Clopidogrel 75mg daily"],
+    "dietary_restrictions": "Low sodium",
+    "follow_up": "Vascular ultrasound in 1 month",
+    "warning_signs": "Severe hypertension",
+    "discharge_instructions": "Check BP twice daily"
+  },
+  {
+    "patient_name": "Emily Davis",
+    "discharge_date": "2025-01-04",
+    "primary_diagnosis": "Pyelonephritis",
+    "medications": ["Cefdinir 300mg twice daily"],
+    "dietary_restrictions": "No restrictions",
+    "follow_up": "Urine re-test in 2 weeks",
+    "warning_signs": "Persistent fever",
+    "discharge_instructions": "Hydrate well"
+  },
+  {
+    "patient_name": "Wei Zhang",
+    "discharge_date": "2024-12-02",
+    "primary_diagnosis": "Renal Cyst",
+    "medications": ["No medications prescribed"],
+    "dietary_restrictions": "Normal diet",
+    "follow_up": "MRI in 6 months",
+    "warning_signs": "Pain or bleeding",
+    "discharge_instructions": "Report if symptoms increase"
+  },
+  {
+    "patient_name": "Fatima Noor",
+    "discharge_date": "2024-11-03",
+    "primary_diagnosis": "Urinary obstruction",
+    "medications": ["Antispasmodic therapy"],
+    "dietary_restrictions": "Normal diet",
+    "follow_up": "Renal ultrasound in 2 weeks",
+    "warning_signs": "Unable to urinate",
+    "discharge_instructions": "Call doctor if urine stops"
+  },
+  {
+    "patient_name": "James Baker",
+    "discharge_date": "2025-01-18",
+    "primary_diagnosis": "Hematuria (blood in urine)",
+    "medications": ["Pain management only"],
+    "dietary_restrictions": "Avoid dehydration",
+    "follow_up": "Urology appointment in 3 weeks",
+    "warning_signs": "Clots in urine",
+    "discharge_instructions": "Monitor urine color"
+  },
+  {
+    "patient_name": "Ananya Sharma",
+    "discharge_date": "2025-02-04",
+    "primary_diagnosis": "CKD Stage 2",
+    "medications": ["ACE inhibitor"],
+    "dietary_restrictions": "Low salt",
+    "follow_up": "Renal function tests in 1 month",
+    "warning_signs": "Rising creatinine",
+    "discharge_instructions": "Maintain diet & hydration"
+  },
+  {
+    "patient_name": "Nathan Kim",
+    "discharge_date": "2024-12-21",
+    "primary_diagnosis": "Proteinuria (high urine protein)",
+    "medications": ["ACE inhibitor"],
+    "dietary_restrictions": "Controlled protein intake",
+    "follow_up": "Spot urine test in 2 weeks",
+    "warning_signs": "Severe edema",
+    "discharge_instructions": "Monitor urine frothiness"
+  },
+  {
+    "patient_name": "Laura White",
+    "discharge_date": "2024-10-14",
+    "primary_diagnosis": "Renal Calculi",
+    "medications": ["NSAID-free pain relief"],
+    "dietary_restrictions": "Hydration + avoid calcium-oxalate foods",
+    "follow_up": "CT scan in 4 weeks",
+    "warning_signs": "Pain spikes, fever",
+    "discharge_instructions": "Maintain urine output"
+  },
+  {
+    "patient_name": "Ethan Hunt",
+    "discharge_date": "2025-02-07",
+    "primary_diagnosis": "Kidney trauma (sports injury)",
+    "medications": ["Pain management only"],
+    "dietary_restrictions": "Normal diet",
+    "follow_up": "Repeat imaging in 3 weeks",
+    "warning_signs": "Recurrent pain",
+    "discharge_instructions": "Avoid strenuous activity"
+  },
+  {
+  "patient_name": "John Smith",
+  "discharge_date": "2025-01-10",
+  "primary_diagnosis": "Kidney Stone",
+  "medications": ["Pain management only"],
+  "dietary_restrictions": "Avoid dehydration",
+  "follow_up": "Urology appointment in 3 weeks",
+  "warning_signs": "Clots in urine",
+  "discharge_instructions": "Monitor urine color"
+}
+]
