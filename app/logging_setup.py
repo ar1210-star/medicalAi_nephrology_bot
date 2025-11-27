@@ -2,7 +2,7 @@ import logging
 import os
 
 log_dirs = "logs"
-os.makedirs(log_dirs, exist_ok=True)
+os.makedirs(log_dirs, exist_ok=True)#makin up the directory
 
 logfile = os.path.join(log_dirs, "app.log")
 
@@ -17,4 +17,4 @@ logging.basicConfig(
 )
 
 
-logger = logging.getLogger("nephrology_app")
+logger = logging.getLogger("nephrology_app") 
